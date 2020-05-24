@@ -1,13 +1,21 @@
-name: use my action
-on: push
+name: Node CI
+
+on: [push]
 
 jobs:
+  build:
 
-  runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-  my_first_job:
-     runs-on: ubuntu-latest
-     steps: 
-     - uses: actions/checkout@v1
-     - name: deploy node js code
-       uses: ./.github/actions/deploy
+    steps:
+    - name: Install npm dependencies
+      run: npm install
+    - name: Run build task
+      run: npm run build --if-present
+    - name: Deploy to Server
+      uses: TheTylerHuskins/wolff-pack-rank-checker@master
+      env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSHKEY }}
+          REMOTE_HOST: ${{ secrets.HOST }}
+          REMOTE_USER: ${{ secrets.USERNAME }}
+          TARGET: ${{ secrets.TARGET }}
