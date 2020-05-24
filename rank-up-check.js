@@ -22,7 +22,7 @@ const checkForRankUps = (members) => {
 
   const embed = new Discord.RichEmbed()
     .setColor('#0099ff')
-    .setTitle('Clan Members Eligible for a Rank up:')
+    .setTitle('Clan Members eligible for a rank up:')
     .setTimestamp();
 
   if (rankUps.length === 0) { embed.setDescription("Currently no one is eligible for a Rank up."); }
