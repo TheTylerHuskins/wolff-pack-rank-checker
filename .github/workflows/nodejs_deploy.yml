@@ -1,4 +1,4 @@
-name: Deploy
+name: Node CI
 
 on: [push]
 
@@ -9,23 +9,16 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-
-    - name: Copy file via scp
+    - name: Install Node.js
+      uses: actions/setup-node@v1
+    - name: Install npm dependencies
+      run: npm install
+    - name: Run build task
+      run: npm run build --if-present
+    - name: Deploy to Server
       uses: TheTylerHuskins/wolff-pack-rank-checker@master
       env:
-        HOST: ${{ secrets.HOST }}
-        USERNAME: ${{ secrets.USERNAME }}
-        PORT: ${{ secrets.PORT }}
-        KEY: ${{ secrets.SSHKEY }}
-      with:
-        source: "."
-        target: "/rank_checker"
-
-    - name: Executing remote  command
-      uses: TheTylerHuskins/wolff-pack-rank-checker@master
-      with:
-        host: ${{ secrets.HOST }}
-        USERNAME: ${{ secrets.USERNAME }}
-        PORT: ${{ secrets.PORT }}
-        KEY: ${{ secrets.SSHKEY }}
-        script: npm run build
+          SSH_PRIVATE_KEY: ${{ secrets.SSHKEY }}
+          REMOTE_HOST: ${{ secrets.HOST }}
+          REMOTE_USER: ${{ secrets.USERNAME }}
+          TARGET: ${{ secrets.TARGET }}
