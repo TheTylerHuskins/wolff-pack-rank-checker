@@ -15,7 +15,7 @@ jobs:
     - name: Deploy to Server
       uses: TheTylerHuskins/wolff-pack-rank-checker@master
       env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSHKEY }}
-          REMOTE_HOST: ${{ secrets.HOST }}
-          REMOTE_USER: ${{ secrets.USERNAME }}
+          SSH_KEY: ${{ secrets.SSHKEY }}
+          HOST: ${{ secrets.HOST }}
+          USERNAME: ${{ secrets.USERNAME }}
           TARGET: ${{ secrets.TARGET }}
