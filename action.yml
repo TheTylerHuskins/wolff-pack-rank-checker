@@ -1,0 +1,10 @@
+name: use my action
+on: push
+
+jobs:
+  my_first_job:
+     runs-on: ubuntu-latest
+     steps: 
+     - uses: actions/checkout@v1
+     - name: deploy node js code
+       uses: ./.github/actions/deploy
