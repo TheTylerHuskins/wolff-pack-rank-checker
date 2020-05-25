@@ -30,7 +30,7 @@ jobs:
     # Runs a single command using the runners shell
     - name: ssh deploy
       uses: easingthemes/ssh-deploy@v2.1.2
-      with:
+      env:
         SSH_PRIVATE_KEY: ${{ secrets.SSHKEY }}
         SOURCE: "./"
         REMOTE_HOST: ${{ secrets.HOST }}
