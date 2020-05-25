@@ -25,7 +25,7 @@ const checkForRankUps = (members) => {
     .setTitle('Clan Members eligible for a rank up:')
     .setTimestamp();
 
-  if (rankUps.length === 0) { embed.setDescription("Currently no one is eligible for a Rank up."); }
+  if (rankUps.length === 0) { embed.setDescription("Currently no one is eligible for a rank up."); }
   else {
     rankUps.forEach(m => embed.addField(m.name, `
     New Rank:    ${inverseRankMap.get(m.RankXp / one_million)}
