@@ -7,7 +7,7 @@ const rankMap = new Map([
   ['Corporal', 25],
   ['Sergeant', 50],
   ['Lieutenant', 100],
-  ['Captain', 145],
+  ['Captain', 150],
 ]);
 
 const inverseRankMap = new Map([...rankMap.entries()].map(([key, value]) => [value, key]));

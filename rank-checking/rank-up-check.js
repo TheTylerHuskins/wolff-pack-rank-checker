@@ -1,11 +1,44 @@
-const { findMembersEligibleForRankUp, createRankUpMessage } = require('./rank-check');
-const { clan_name } = require('../library/constants');
-const { clan } = require('runescape-api');
+const { specialRanks, rankMap, inverseRankMap, one_million } = require('../library/constants');
 const Discord = require('discord.js');
 
-const checkForRankUps = (members) => {
-  const rankUps = findMembersEligibleForRankUp(members);
+/**
+ * Determines if the given rank string is in the list of special ranks
+ * @param rank string
+ */
+const isSpecialRank = (rank) => specialRanks.includes(rank);
 
+/**
+ * Gets the Experience for a rank up for a given rank string
+ * @param rank string
+ */
+const getRankExp = (rank) => (rankMap.get(rank) || 0) * one_million;
+
+/**
+ * creates the rank up message for a given rank object
+ * @param rank
+ */
+const createRankUpMessage = ({ experience, rankXp }) => `
+  Current Rank: ${inverseRankMap.get(rankXp / one_million)}
+  Current Exp:  ${experience.toLocaleString()}
+  Rank Exp:     ${rankXp.toLocaleString()}`;
+
+/**
+ * From the given list of clan members returns the subset that are members 
+ * who should be given a rank up
+ * @param members Array<ClanMembers>
+ */
+const findMembersEligibleForRankUp = (members) => {
+  return members
+    .filter(m => !isSpecialRank(m.rank))
+    .map(({ name, experience, rank }) => { return { name, experience, rankXp: getRankExp(rank) }; })
+    .filter(m => m.experience >= m.rankXp);
+};
+
+/**
+ * Creates a Discord Message Embed for the given list of clan members
+ * @param rankUps rank
+ */
+const createRankUpsEmbed = (rankUps) => {
   const embed = new Discord.RichEmbed()
     .setColor('#0099ff')
     .setTitle('Clan Members eligible for a rank up:')
@@ -18,4 +51,4 @@ const checkForRankUps = (members) => {
   return embed;
 };
 
-module.exports = { createDiscordEmbed: async () => clan.getMembers(clan_name).then(checkForRankUps) };
+module.exports = { findMembersEligibleForRankUp, createRankUpsEmbed };
