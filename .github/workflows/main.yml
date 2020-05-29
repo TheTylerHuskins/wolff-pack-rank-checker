@@ -28,7 +28,7 @@ jobs:
         CI: true
 
   deploy:
-    #needs: [test]
+    needs: [test]
     runs-on: ubuntu-latest
 
     steps:
