@@ -1,13 +1,11 @@
-const one_million = 1000000;
-
 const clan_name = 'The Wolff Pack';
 
 const rankMap = new Map([
-  ['Recruit', 10],
-  ['Corporal', 25],
-  ['Sergeant', 50],
-  ['Lieutenant', 100],
-  ['Captain', 150],
+  ['Recruit', 10000000],
+  ['Corporal', 25000000],
+  ['Sergeant', 50000000],
+  ['Lieutenant', 100000000],
+  ['Captain', 150000000],
 ]);
 
 const inverseRankMap = new Map([...rankMap.entries()].map(([key, value]) => [value, key]));
@@ -15,4 +13,4 @@ const inverseRankMap = new Map([...rankMap.entries()].map(([key, value]) => [val
 const specialRanks = ['General', 'Admin', 'Organiser', 'Coordinator', 'Overseer', 'Deputy Owner', 'Owner'];
 
 
-module.exports = { clan_name, rankMap, inverseRankMap, specialRanks, one_million };
+module.exports = { clan_name, rankMap, inverseRankMap, specialRanks };

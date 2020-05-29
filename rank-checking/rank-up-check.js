@@ -1,5 +1,7 @@
-const { specialRanks, rankMap, inverseRankMap, one_million } = require('../library/constants');
+const { specialRanks, rankMap, inverseRankMap } = require('../library/constants');
 const Discord = require('discord.js');
+
+const noRankUpsMessage = 'Currently no one is eligible for a rank up.';
 
 /**
  * Determines if the given rank string is in the list of special ranks
@@ -11,14 +13,14 @@ const isSpecialRank = (rank) => specialRanks.includes(rank);
  * Gets the Experience for a rank up for a given rank string
  * @param rank string
  */
-const getRankExp = (rank) => (rankMap.get(rank) || 0) * one_million;
+const getRankExp = (rank) => (rankMap.get(rank) || 0);
 
 /**
  * creates the rank up message for a given rank object
  * @param rank
  */
 const createRankUpMessage = ({ experience, rankXp }) => `
-  Current Rank: ${inverseRankMap.get(rankXp / one_million)}
+  Current Rank: ${inverseRankMap.get(rankXp)}
   Current Exp:  ${experience.toLocaleString()}
   Rank Exp:     ${rankXp.toLocaleString()}`;
 
@@ -44,11 +46,10 @@ const createRankUpsEmbed = (rankUps) => {
     .setTitle('Clan Members eligible for a rank up:')
     .setTimestamp();
 
-  if (rankUps.length === 0) { embed.setDescription('Currently no one is eligible for a rank up.'); return; }
+  if (rankUps.length === 0) { embed.setDescription(noRankUpsMessage); return embed; }
 
   rankUps.forEach(m => embed.addField(m.name, createRankUpMessage(m)));
-
   return embed;
 };
 
-module.exports = { findMembersEligibleForRankUp, createRankUpsEmbed };
+module.exports = { findMembersEligibleForRankUp, createRankUpsEmbed, noRankUpsMessage };
