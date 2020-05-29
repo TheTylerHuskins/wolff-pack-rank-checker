@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "test",
+    "test": "jest",
     "build": "node ."
   },
   "author": "Tyler Huskins",
@@ -13,5 +13,8 @@
     "runescape-api": "^2.1.0",
     "discord.js": "^11.5.1",
     "dotenv": "^8.2.0"
+  },
+  "devDependencies": {
+    "jest": "^26.0.1"
   }
 }
