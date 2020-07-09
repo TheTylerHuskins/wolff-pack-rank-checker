@@ -9,5 +9,5 @@ module.exports = {
     execute: () => clan.getMembers(clan_name)
       .then(findMembersEligibleForRankUp)
       .then(createRankUpsEmbed)
-  }
+  },
 };
