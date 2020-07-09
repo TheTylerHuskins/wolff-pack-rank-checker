@@ -43,7 +43,7 @@ const findMembersEligibleForRankUp = (members) => {
 const createRankUpsEmbed = (rankUps) => {
   const embed = new Discord.RichEmbed()
     .setColor('#0099ff')
-    .setTitle('Clan Members eligible for a rank up:')
+    .setTitle('Clan members eligible for a rank up:')
     .setTimestamp();
 
   if (rankUps.length === 0) { embed.setDescription(noRankUpsMessage); return embed; }
