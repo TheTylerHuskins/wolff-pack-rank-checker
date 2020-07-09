@@ -43,6 +43,7 @@ jobs:
         port: ${{ secrets.PORT }}
         script: |
           cd ~/wolff-pack-rank-checker
+          git reset --hard
           git pull origin master
           npm install --production
           cat TOKEN=$token >> .env
