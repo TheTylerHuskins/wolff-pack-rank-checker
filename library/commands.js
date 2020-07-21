@@ -14,7 +14,7 @@ module.exports = {
   xp: {
     name: 'xp',
     execute: (args) => clan.getMembers(clan_name)
-      .then(members => getMember(args[0], members))
+      .then(members => getMember(args.join(' '), members))
       .then(createRankXpEmbed)
   },
 };
