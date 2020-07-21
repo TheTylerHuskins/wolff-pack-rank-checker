@@ -41,18 +41,15 @@ test('"findMembersEligibleForRankUp" correctly finds Members eligible for rank u
 
 test('"createRankUpsEmbed" correctly creates a discord embed: embed.description for 0 length rank up', () => {
   const result = createRankUpsEmbed([]);
-  console.log(result);
   expect(result.description).toBe(noRankUpsMessage);
 });
 
 test('"createRankUpsEmbed" correctly creates a discord embed: embed fields has the correct length', () => {
   const result = createRankUpsEmbed([memberToRankUp]);
-  console.log(result);
   expect(result.fields.length).toBe(1);
 });
 
 test('"createRankUpsEmbed" correctly creates a discord embed: embed fields has correct name', () => {
   const result = createRankUpsEmbed([memberToRankUp]);
-  console.log(result);
   expect(result.fields[0].name).toBe(memberToRankUp.name);
 });

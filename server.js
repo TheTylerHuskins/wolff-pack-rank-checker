@@ -23,6 +23,6 @@ bot.on('message', (msg) => {
 
     if (!bot.commands.has(command)) return;
 
-    bot.commands.get(command).execute().then(embed => msg.channel.send(embed));
+    bot.commands.get(command).execute(args).then(embed => msg.channel.send(embed));
   } catch (error) { msg.channel.send("An error occured while processing the request.  Please try again later."); console.error(error); }
 });
