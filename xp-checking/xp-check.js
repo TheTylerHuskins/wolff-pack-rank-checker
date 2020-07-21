@@ -23,6 +23,6 @@ const getMember = (memberName, members) => members.filter(m => m.name.toLowerCas
 
 const createMessage = ({ experience, rank }, rankXp) => !rankXp ? getNoRankXpMessage(rank) : `${(rankXp - experience).toLocaleString()} more xp to be eligable to rank up`;
 
-const getNoRankXpMessage = (rank) => `The rank of ${rank} has no xp threshold for rank up.  See an Admin+ about any questions about ranking up.`;
+const getNoRankXpMessage = (rank) => `The rank of ${rank} has no xp threshold for rank up.  See an Admin+ about any questions regarding your rank.`;
 
 module.exports = { getMember, createRankXpEmbed };
