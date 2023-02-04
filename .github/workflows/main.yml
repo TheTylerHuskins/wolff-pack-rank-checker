@@ -47,4 +47,4 @@ jobs:
           git pull origin master
           npm install --production
           cat TOKEN=$token >> .env
-          pm2 restart node-app
+          pm2 start server.js
